@@ -1,5 +1,6 @@
 export async function getData() {
-  const url = "https://api.restful-api.dev/objects";
+  const url =
+    "https://api.open-meteo.com/v1/forecast?latitude=-33.9258&longitude=18.4232&hourly=uv_index&current=temperature_2m,precipitation,is_day,rain";
   try {
     const response = await fetch(url);
     if (!response.ok) {

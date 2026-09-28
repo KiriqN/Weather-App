@@ -6,8 +6,8 @@ import { setupCounter } from "./counter.js";
 import { getData } from "./api/api.js";
 
 getData().then((results) => {
-  document.querySelector("#api").innerHTML = JSON.stringify(results);
-  console.log(results);
+  //document.querySelector("#api").innerHTML = JSON.stringify(results);
+  //console.log(results);
 });
 
 document.querySelector("#app").innerHTML = `
