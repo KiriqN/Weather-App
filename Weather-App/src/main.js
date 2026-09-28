@@ -3,6 +3,7 @@ import heroImg from "./assets/hero.png";
 import javascriptLogo from "./assets/javascript.svg";
 import viteLogo from "./assets/vite.svg";
 import { setupCounter } from "./counter.js";
+import { getData } from "./api/api.js";
 
 document.querySelector("#app").innerHTML = `
 <section id="center">
@@ -57,4 +58,5 @@ document.querySelector("#app").innerHTML = `
 <section id="spacer"></section>
 `;
 
+getData();
 setupCounter(document.querySelector("#counter"));
