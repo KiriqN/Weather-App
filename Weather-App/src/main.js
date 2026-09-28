@@ -5,6 +5,11 @@ import viteLogo from "./assets/vite.svg";
 import { setupCounter } from "./counter.js";
 import { getData } from "./api/api.js";
 
+getData().then((results) => {
+  document.querySelector("#api").innerHTML = JSON.stringify(results);
+  console.log(results);
+});
+
 document.querySelector("#app").innerHTML = `
 <section id="center">
   <div class="hero">
@@ -58,5 +63,4 @@ document.querySelector("#app").innerHTML = `
 <section id="spacer"></section>
 `;
 
-getData();
 setupCounter(document.querySelector("#counter"));
