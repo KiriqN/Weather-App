@@ -37,8 +37,8 @@ src/
 
 ## Progress
 
-- [ ] Project setup with Vite and Tailwind
-- [ ] Weather API call
+- [x] Project setup with Vite and Tailwind
+- [x] Weather API call
 - [ ] Geocoding API call
 - [ ] Weather card component
 - [ ] App state and rendering
