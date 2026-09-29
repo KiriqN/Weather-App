@@ -6,12 +6,22 @@ import { setupCounter } from "./counter.js";
 import { getData } from "./api/api.js";
 import { getGeo } from "./api/geocode.js";
 
-getLocation();
+const form = document.querySelector("#search-form");
 
-async function getLocation() {
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
+async function getLocation(name) {
   try {
-    const location = await getGeo();
+    const location = await getGeo(name);
+
     if (!location) return;
+
+    if (!location.results) {
+      document.querySelector("#api").textContent = `No location found.`;
+      return;
+    }
 
     const latitude = location.results[0].latitude;
     const longitude = location.results[0].longitude;
