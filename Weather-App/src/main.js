@@ -6,12 +6,33 @@ import { setupCounter } from "./counter.js";
 import { getData } from "./api/api.js";
 import { getGeo } from "./api/geocode.js";
 
+getLocation();
+
+async function getLocation() {
+  try {
+    const location = await getGeo();
+    if (!location) return;
+
+    const latitude = location.results[0].latitude;
+    const longitude = location.results[0].longitude;
+
+    const weather = await getData(latitude, longitude);
+
+    const temp = weather.current.temperature_2m;
+    const unit = weather.current_units.temperature_2m;
+
+    document.querySelector("#api").textContent = `${temp}${unit}`;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 /*getData().then((results) => {
   //document.querySelector("#api").innerHTML = JSON.stringify(results);
   //console.log(results);
 }); */
 
-document.querySelector("#app").innerHTML = `
+/*document.querySelector("#app").innerHTML = `
 <section id="center">
   <div class="hero">
     <img src="${heroImg}" class="base" width="170" height="179">
@@ -62,7 +83,6 @@ document.querySelector("#app").innerHTML = `
 
 <div class="ticks"></div>
 <section id="spacer"></section>
-`;
+`; */
 
-getGeo();
-setupCounter(document.querySelector("#counter"));
+//setupCounter(document.querySelector("#counter"));
