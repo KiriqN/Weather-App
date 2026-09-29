@@ -7,28 +7,29 @@ import { getData } from "./api/api.js";
 import { getGeo } from "./api/geocode.js";
 
 const form = document.querySelector("#search-form");
+const locationInput = document.getElementById("locationInput");
+const outputElement = document.querySelector("#api");
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const locationName = document.getElementById("locationInput").value.trim();
+  const locationName = locationInput.value.trim();
 
   if (!locationName) {
-    document.querySelector("#api").textContent =
-      `Please enter a valid location`;
+    outputElement.textContent = `Please enter a valid location`;
     return;
   }
-  getLocation(locationName);
+  await handleWeatherSearch(locationName);
 });
 
-async function getLocation(name) {
+async function handleWeatherSearch(name) {
   try {
     const location = await getGeo(name);
 
     if (!location) return;
 
     if (!location.results) {
-      document.querySelector("#api").textContent = `No location found.`;
+      outputElement.textContent = `No location found.`;
       return;
     }
 
@@ -40,9 +41,10 @@ async function getLocation(name) {
     const temp = weather.current.temperature_2m;
     const unit = weather.current_units.temperature_2m;
 
-    document.querySelector("#api").textContent = `${temp}${unit}`;
+    outputElement.textContent = `${temp}${unit}`;
   } catch (error) {
-    console.error(error.message);
+    console.error("Error fetching weather:", error);
+    outputElement.textContent = `Failed to load weather data. Please try again.`;
   }
 }
 
