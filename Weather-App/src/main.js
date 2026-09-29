@@ -10,6 +10,15 @@ const form = document.querySelector("#search-form");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  const locationName = document.getElementById("locationInput").value.trim();
+
+  if (!locationName) {
+    document.querySelector("#api").textContent =
+      `Please enter a valid location`;
+    return;
+  }
+  getLocation(locationName);
 });
 
 async function getLocation(name) {
