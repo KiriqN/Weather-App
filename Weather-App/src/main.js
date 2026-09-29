@@ -4,6 +4,7 @@ import javascriptLogo from "./assets/javascript.svg";
 import viteLogo from "./assets/vite.svg";
 import { setupCounter } from "./counter.js";
 import { getData } from "./api/api.js";
+import { getGeo } from "./api/geocode.js";
 
 /*getData().then((results) => {
   //document.querySelector("#api").innerHTML = JSON.stringify(results);
@@ -63,4 +64,5 @@ document.querySelector("#app").innerHTML = `
 <section id="spacer"></section>
 `;
 
+getGeo();
 setupCounter(document.querySelector("#counter"));
