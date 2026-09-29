@@ -39,7 +39,7 @@ src/
 
 - [x] Project setup with Vite and Tailwind
 - [x] Weather API call
-- [ ] Geocoding API call
+- [x] Geocoding API call
 - [ ] Weather card component
 - [ ] App state and rendering
 - [ ] Search with autocomplete dropdown
