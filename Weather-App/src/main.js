@@ -41,6 +41,9 @@ async function handleWeatherSearch(name) {
     const temp = weather.current.temperature_2m;
     const unit = weather.current_units.temperature_2m;
 
+    console.log(location);
+    console.log(weather);
+
     outputElement.textContent = `${temp}${unit}`;
   } catch (error) {
     console.error("Error fetching weather:", error);

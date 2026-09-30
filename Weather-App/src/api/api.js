@@ -1,14 +1,11 @@
 export async function getData(latitude, longitude) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=uv_index&current=temperature_2m,precipitation,is_day,rain`;
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error(error.message);
+  const response = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=uv_index&current=temperature_2m,precipitation,is_day,rain`,
+  );
+
+  if (!response.ok) {
+    throw new Error(`Response status: ${response.status}`);
   }
+
+  return response.json();
 }
