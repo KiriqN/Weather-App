@@ -5,10 +5,14 @@ import viteLogo from "./assets/vite.svg";
 import { setupCounter } from "./counter.js";
 import { getData } from "./api/api.js";
 import { getGeo } from "./api/geocode.js";
+import { createWeatherCard } from "./components/card.js";
 
 const form = document.querySelector("#search-form");
 const locationInput = document.getElementById("locationInput");
 const outputElement = document.querySelector("#api");
+const outputCard = document.getElementById("card");
+
+handleWeatherSearch("New York");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -26,8 +30,6 @@ async function handleWeatherSearch(name) {
   try {
     const location = await getGeo(name);
 
-    if (!location) return;
-
     if (!location.results) {
       outputElement.textContent = `No location found.`;
       return;
@@ -35,6 +37,8 @@ async function handleWeatherSearch(name) {
 
     const latitude = location.results[0].latitude;
     const longitude = location.results[0].longitude;
+    const locationName = location.results[0].name;
+    const countryName = location.results[0].country;
 
     const weather = await getData(latitude, longitude);
 
@@ -45,6 +49,11 @@ async function handleWeatherSearch(name) {
     console.log(weather);
 
     outputElement.textContent = `${temp}${unit}`;
+    outputCard.appendChild(createWeatherCard("USA", "New York", 25, "°C"));
+    outputCard.appendChild(createWeatherCard("USA", "New York", 25, "°C"));
+    /* outputCard.appendChild(
+      createWeatherCard(countryName, locationName, temp, unit),
+    ); */
   } catch (error) {
     console.error("Error fetching weather:", error);
     outputElement.textContent = `Failed to load weather data. Please try again.`;

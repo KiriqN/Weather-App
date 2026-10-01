@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+<style>
+.fg-a{animation:fg-a 4s ease-in-out infinite alternate}
+.fg-b{animation:fg-b 4s ease-in-out infinite alternate}
+@keyframes fg-a{from{transform:translateX(-1px);opacity:.6}to{transform:translateX(1px);opacity:1}}
+@keyframes fg-b{from{transform:translateX(1px);opacity:1}to{transform:translateX(-1px);opacity:.6}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important}}
+</style>
+<path stroke="#C9C7BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M7 15h9.5a3.5 3.5 0 0 0 .4-6.98A5.5 5.5 0 0 0 6.3 7.7 3.7 3.7 0 0 0 7 15z"/>
+<path class="fg-a" stroke="#C9C7BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M4 18h16"/>
+<path class="fg-b" stroke="#C9C7BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M7 21h10"/>
+</svg>

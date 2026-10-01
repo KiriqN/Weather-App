@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+<style>
+.sn-d{animation:sn-fall 2.4s linear infinite}
+@keyframes sn-fall{0%{transform:translateY(-1px);opacity:0}25%{opacity:1}100%{transform:translateY(2px);opacity:0}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important}}
+</style>
+<path stroke="#C9C7BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M7 15h9.5a3.5 3.5 0 0 0 .4-6.98A5.5 5.5 0 0 0 6.3 7.7 3.7 3.7 0 0 0 7 15z"/>
+<path class="sn-d" style="animation-delay:0s" stroke="#DCEBFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M8 17.5v3M6.7 18.25l2.6 1.5M6.7 19.75l2.6-1.5"/>
+<path class="sn-d" style="animation-delay:1.2s" stroke="#DCEBFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M16 17.5v3M14.7 18.25l2.6 1.5M14.7 19.75l2.6-1.5"/>
+<path class="sn-d" style="animation-delay:0.6s" stroke="#DCEBFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M12 20v1"/>
+
+</svg>

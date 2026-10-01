@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+<style>
+.cl-cloud{animation:cl-drift 5s ease-in-out infinite alternate}
+@keyframes cl-drift{from{transform:translateX(-0.7px)}to{transform:translateX(0.7px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important}}
+</style>
+<path class="cl-cloud" stroke="#C9C7BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M7 19h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6 10.6 4.2 4.2 0 0 0 7 19z"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+<style>
+.pn-moon{transform-box:view-box;transform-origin:8px 8px;animation:pn-sway 6s ease-in-out infinite alternate}
+.pn-cloud{animation:pn-drift 5s ease-in-out infinite alternate}
+@keyframes pn-sway{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+@keyframes pn-drift{from{transform:translateX(-0.6px)}to{transform:translateX(0.6px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important}}
+</style>
+<path class="pn-moon" stroke="#B9B3F0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M11.5 9.2A5.5 5.5 0 0 1 4.8 2.5a5.5 5.5 0 1 0 6.7 6.7z"/>
+<path class="pn-cloud" stroke="#C9C7BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="#242424" d="M10 20.5h8a3.3 3.3 0 0 0 .4-6.57A5 5 0 0 0 9.2 13a3.6 3.6 0 0 0 .8 7.5z"/>
+</svg>
