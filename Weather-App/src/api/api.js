@@ -1,6 +1,6 @@
 export async function getData(latitude, longitude) {
   const response = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=uv_index&current=temperature_2m,precipitation,is_day,rain`,
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,is_day,weather_code`,
   );
 
   if (!response.ok) {

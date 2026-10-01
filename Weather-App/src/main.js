@@ -12,7 +12,7 @@ const locationInput = document.getElementById("locationInput");
 const outputElement = document.querySelector("#api");
 const outputCard = document.getElementById("card");
 
-handleWeatherSearch("New York");
+//handleWeatherSearch("New York");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -44,16 +44,27 @@ async function handleWeatherSearch(name) {
 
     const temp = weather.current.temperature_2m;
     const unit = weather.current_units.temperature_2m;
+    const weatherCode = weather.current.weather_code;
+    const isDay = weather.current.is_day;
 
     console.log(location);
     console.log(weather);
+    console.log(weatherCode);
+    console.log(isDay);
 
     outputElement.textContent = `${temp}${unit}`;
     outputCard.appendChild(createWeatherCard("USA", "New York", 25, "°C"));
     outputCard.appendChild(createWeatherCard("USA", "New York", 25, "°C"));
-    /* outputCard.appendChild(
-      createWeatherCard(countryName, locationName, temp, unit),
-    ); */
+    outputCard.appendChild(
+      createWeatherCard(
+        countryName,
+        locationName,
+        temp,
+        unit,
+        weatherCode,
+        isDay,
+      ),
+    );
   } catch (error) {
     console.error("Error fetching weather:", error);
     outputElement.textContent = `Failed to load weather data. Please try again.`;

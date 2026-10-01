@@ -12,9 +12,9 @@ export function createWeatherCard(
   card.className =
     "rounded-xl p-4 shadow-md min-h-[200px] bg-[#1a1a1a] border-[#333333] border-1";
 
-  const temp = document.createElement("h2");
-  temp.className = "text-[15px] font-medium text-gray-100";
-  temp.textContent = `${name}`;
+  const countryPlace = document.createElement("h2");
+  countryPlace.className = "text-[15px] font-medium text-gray-100";
+  countryPlace.textContent = `${name}`;
 
   const countryName = document.createElement("p");
   countryName.className = "text-xs text-gray-400";
@@ -25,15 +25,30 @@ export function createWeatherCard(
   iconElement.src = "/weather-icons/clear-day.svg";
   iconElement.alt = "Weather Icon";
 
-  const weather = document.createElement("p");
-  weather.className = "text-xl font-semibold text-gray-500";
-  weather.textContent = `${temperature} ${units}`;
+  const tempRow = document.createElement("p");
+  tempRow.className = "flex items-baseline gap-0.5";
+
+  const degrees = document.createElement("span");
+  degrees.className = "text-[32px] font-medium text-gray-100";
+  degrees.textContent = `${temperature}`;
+
+  const unit = document.createElement("span");
+  unit.className = "text-[15px] text-gray-400";
+  unit.textContent = ` ${units}`;
 
   const weatherDescription = document.createElement("p");
   weatherDescription.className = "text-sm text-gray-400";
   weatherDescription.textContent = `Clear Sky`;
 
-  card.append(temp, countryName, iconElement, weather, weatherDescription);
+  card.append(
+    countryPlace,
+    countryName,
+    iconElement,
+    tempRow,
+    degrees,
+    unit,
+    weatherDescription,
+  );
 
   return card;
 }
