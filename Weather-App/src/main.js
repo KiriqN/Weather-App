@@ -4,15 +4,16 @@ import { getGeo } from "./api/geocode.js";
 import { createWeatherCard } from "./components/card.js";
 import { getWeatherCodes } from "./utils/weathercodes.js";
 
+handleWeatherSearch("New York");
+handleWeatherSearch("Somerset West");
+handleWeatherSearch("Stellenbosch");
+handleWeatherSearch("St Petersburg");
+handleWeatherSearch("Maldives");
+
 const form = document.querySelector("#search-form");
 const locationInput = document.getElementById("locationInput");
 const outputElement = document.querySelector("#api");
 const outputCard = document.getElementById("card");
-
-createWeatherCard("USA", "New York", 25, "°C");
-createWeatherCard("USA", "New York", 25, "°C");
-
-handleWeatherSearch("USA", "New York", 25, "°C");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();

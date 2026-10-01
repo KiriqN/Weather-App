@@ -25,18 +25,18 @@ export function createWeatherCard(
   iconElement.alt = "Weather Icon";
 
   const tempRow = document.createElement("p");
-  tempRow.className = "flex items-baseline gap-0.5";
+  tempRow.className = "flex mt-2 items-baseline gap-0.5";
 
   const degrees = document.createElement("span");
   degrees.className = "text-[32px] font-medium text-gray-100";
   degrees.textContent = `${temperature}`;
 
   const unit = document.createElement("span");
-  unit.className = "text-[15px] font-medium text-gray-400";
+  unit.className = "text-[15px] font-medium  text-gray-400";
   unit.textContent = ` ${units}`;
 
   const weatherDescription = document.createElement("p");
-  weatherDescription.className = "text-sm mt-3 text-gray-400";
+  weatherDescription.className = "text-sm mt-2 text-gray-400";
   weatherDescription.textContent = `${weatherCode.label}`;
 
   card.append(
