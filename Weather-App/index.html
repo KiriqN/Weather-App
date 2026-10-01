@@ -7,26 +7,34 @@
     <title>weather-app</title>
   </head>
   <body>
-    <h1 class="text-3xl font-bold text-green-600 p-4">Weather App</h1>
-    <form id="search-form">
-      <label>Enter Location</label>
-      <input
-        type="text"
-        id="locationInput"
-        for="fname"
-        class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-      />
-      <input
-        type="submit"
-        value="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      />
-    </form>
-    <div id="api"></div>
-    <div
-      id="card"
-      class="container mx-auto grid grid-cols-[repeat(auto-fill,200px)] gap-8"
-    ></div>
+    <div class="container mx-auto">
+      <h1 class="pt-10 text-[28px] font-medium tracking-tight text-gray-100">
+        Weather
+      </h1>
+      <p class="my-2 text-[15px] text-gray-400">
+        Search a place to add it to your list.
+      </p>
+      <form id="search-form">
+        <input
+          type="text"
+          id="locationInput"
+          for="fname"
+          placeholder="Search for a city..."
+          class="my-3 flex-1 rounded-lg border border-white/10 bg-[#242424] px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-500 focus:border-white/30 focus:outline-none focus:ring-2 focus:ring-white/10"
+        />
+        <input
+          type="submit"
+          value="Search"
+          class="shrink-0 rounded-lg bg-gray-100 px-5 py-2.5 text-sm font-medium text-[#1a1a1a] hover:bg-white"
+        />
+      </form>
+
+      <div id="api"></div>
+      <div
+        id="card"
+        class="grid grid-cols-[repeat(auto-fill,200px)] gap-8"
+      ></div>
+    </div>
     <!--<div id="app"></div> -->
     <script type="module" src="/src/main.js"></script>
   </body>
