@@ -5,8 +5,7 @@ export function createWeatherCard(
   name,
   temperature,
   units,
-  icon,
-  description,
+  weatherCode,
 ) {
   const card = document.createElement("article");
   card.className =
@@ -22,7 +21,7 @@ export function createWeatherCard(
 
   const iconElement = document.createElement("img");
   iconElement.className = "w-12 h-12 mt-2";
-  iconElement.src = "/weather-icons/clear-day.svg";
+  iconElement.src = `/weather-icons/${weatherCode.icon}.svg`;
   iconElement.alt = "Weather Icon";
 
   const tempRow = document.createElement("p");
@@ -33,12 +32,12 @@ export function createWeatherCard(
   degrees.textContent = `${temperature}`;
 
   const unit = document.createElement("span");
-  unit.className = "text-[15px] text-gray-400";
+  unit.className = "text-[15px] font-medium text-gray-400";
   unit.textContent = ` ${units}`;
 
   const weatherDescription = document.createElement("p");
-  weatherDescription.className = "text-sm text-gray-400";
-  weatherDescription.textContent = `Clear Sky`;
+  weatherDescription.className = "text-sm mt-3 text-gray-400";
+  weatherDescription.textContent = `${weatherCode.label}`;
 
   card.append(
     countryPlace,
