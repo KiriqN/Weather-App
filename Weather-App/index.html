@@ -14,14 +14,24 @@
       <p class="my-2 text-[15px] text-gray-400">
         Search a place to add it to your list.
       </p>
-      <form id="search-form">
-        <input
-          type="text"
-          id="locationInput"
-          for="fname"
-          placeholder="Search for a city..."
-          class="my-3 flex-1 rounded-lg border border-white/10 bg-[#242424] px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-500 focus:border-white/30 focus:outline-none focus:ring-2 focus:ring-white/10"
-        />
+      <form id="search-form" class="flex">
+        <div class="relative flex-1 md:flex-none md:w-80">
+          <input
+            type="text"
+            id="locationInput"
+            for="fname"
+            placeholder="Search for a city..."
+            class="w-full rounded-lg border border-white/10 bg-[#242424] px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-500 focus:border-white/30 focus:outline-none focus:ring-2 focus:ring-white/10"
+          />
+          <ul
+            id="suggestions"
+            class="absolute hidden left-0 right-0 top-full z-10 rounded-lg border border-white/10 bg-[#242424] p-1"
+          >
+            <li>test 1</li>
+            <li>test 2</li>
+          </ul>
+        </div>
+
         <input
           type="submit"
           value="Search"

@@ -55,6 +55,9 @@ export function getWeatherCodes(weatherCode, isDay) {
 
   if (typeof weather.icon === "object") {
     iconName = isDay ? weather.icon.day : weather.icon.night;
+    console.log(
+      `Weather code ${weatherCode} is ${isDay ? "day" : "night"}: ${iconName}`,
+    );
   }
   return { icon: iconName, label: weather.label };
 }

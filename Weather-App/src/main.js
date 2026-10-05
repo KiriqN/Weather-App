@@ -1,19 +1,23 @@
+`use strict`;
+
 import "./style.css";
 import { getData } from "./api/api.js";
 import { getGeo } from "./api/geocode.js";
 import { createWeatherCard } from "./components/card.js";
 import { getWeatherCodes } from "./utils/weathercodes.js";
 
-handleWeatherSearch("New York");
+/*handleWeatherSearch("New York");
 handleWeatherSearch("Somerset West");
 handleWeatherSearch("Stellenbosch");
 handleWeatherSearch("St Petersburg");
-handleWeatherSearch("Maldives");
+handleWeatherSearch("Maldives"); */
 
 const form = document.querySelector("#search-form");
 const locationInput = document.getElementById("locationInput");
 const outputElement = document.querySelector("#api");
 const outputCard = document.getElementById("card");
+const suggestionsList = document.getElementById("suggestions");
+let timerID;
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -26,6 +30,32 @@ form.addEventListener("submit", async (event) => {
   }
   await handleWeatherSearch(locationName);
 });
+
+locationInput.addEventListener("input", () => {
+  clearTimeout(timerID);
+  timerID = setTimeout(() => {
+    const locationInputListener = locationInput.value.trim();
+
+    if (locationInputListener) {
+      handleSuggestions(locationInputListener);
+    } else {
+    }
+  }, 300);
+});
+
+async function handleSuggestions(location) {
+  if (location.length < 3) {
+    suggestionsList.style.display = "none";
+    return;
+  }
+  try {
+    const data = await getGeo(location);
+    suggestionsList.style.display = "block";
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching suggestions:", error);
+  }
+}
 
 async function handleWeatherSearch(name) {
   try {
@@ -50,8 +80,8 @@ async function handleWeatherSearch(name) {
 
     const weatherInfo = getWeatherCodes(weatherCode, isDay);
 
-    console.log(weather);
-    console.log(location);
+    //console.log(weather);
+    //console.log(location);
 
     outputCard.appendChild(
       createWeatherCard(countryName, locationName, temp, unit, weatherInfo),
