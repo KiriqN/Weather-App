@@ -55,13 +55,18 @@ async function handleSuggestions(location) {
   }
   try {
     const data = await getGeo(location);
+    if (!data.results) {
+      suggestionsList.style.display = "none";
+      return;
+    }
     suggestionsList.style.display = "block";
-    console.log(data);
+
     const suggestions = data.results
       .slice(0, 3)
       .map((place) => createSuggestionItem(place));
     suggestionsList.replaceChildren(...suggestions);
   } catch (error) {
+    suggestionsList.style.display = "none";
     console.error("Error fetching suggestions:", error);
   }
 }
