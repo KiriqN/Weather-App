@@ -50,6 +50,9 @@ async function handleWeatherSearch(name) {
 
     const weatherInfo = getWeatherCodes(weatherCode, isDay);
 
+    console.log(weather);
+    console.log(location);
+
     outputCard.appendChild(
       createWeatherCard(countryName, locationName, temp, unit, weatherInfo),
     );
