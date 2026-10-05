@@ -5,6 +5,7 @@ import { getData } from "./api/api.js";
 import { getGeo } from "./api/geocode.js";
 import { createWeatherCard } from "./components/card.js";
 import { getWeatherCodes } from "./utils/weathercodes.js";
+import { createSuggestionItem } from "./components/suggestions.js";
 
 /*handleWeatherSearch("New York");
 handleWeatherSearch("Somerset West");
@@ -28,6 +29,8 @@ form.addEventListener("submit", async (event) => {
     outputElement.textContent = `Please enter a valid location`;
     return;
   }
+  locationInput.value = "";
+  suggestionsList.style.display = "none";
   await handleWeatherSearch(locationName);
 });
 
@@ -39,6 +42,8 @@ locationInput.addEventListener("input", () => {
     if (locationInputListener) {
       handleSuggestions(locationInputListener);
     } else {
+      suggestionsList.style.display = "none";
+      console.log("Suggestions Hidden");
     }
   }, 300);
 });
@@ -52,6 +57,10 @@ async function handleSuggestions(location) {
     const data = await getGeo(location);
     suggestionsList.style.display = "block";
     console.log(data);
+    const suggestions = data.results
+      .slice(0, 3)
+      .map((place) => createSuggestionItem(place));
+    suggestionsList.replaceChildren(...suggestions);
   } catch (error) {
     console.error("Error fetching suggestions:", error);
   }

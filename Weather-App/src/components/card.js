@@ -1,5 +1,3 @@
-const outputCard = document.getElementById("card");
-
 export function createWeatherCard(
   country,
   name,
