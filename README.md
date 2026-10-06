@@ -42,11 +42,11 @@ src/
 - [x] Geocoding API call
 - [x] Weather card component
 - [ ] App state and rendering
-- [ ] Search with autocomplete dropdown
+- [x] Search with autocomplete dropdown
 - [ ] Removing cards
 - [ ] Saving with localStorage
 - [ ] Error handling and loading states
-- [ ] Styling and polish
+- [x] Styling and polish
 
 ## Getting started
 
