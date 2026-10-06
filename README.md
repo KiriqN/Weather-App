@@ -31,7 +31,6 @@ src/
 ├── main.js          # Connects everything and holds app state
 ├── api/             # Fetching weather and location data
 ├── components/      # Building cards and the search dropdown
-├── ui/              # Error messages and loading states
 └── utils/           # Input validation and localStorage helpers
 ```
 
