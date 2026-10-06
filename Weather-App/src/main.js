@@ -4,14 +4,19 @@ import { getGeo } from "./api/geocode.js";
 import { createWeatherCard } from "./components/card.js";
 import { getWeatherCodes } from "./utils/weathercodes.js";
 import { createSuggestionItem } from "./components/suggestions.js";
+import { localStorageAvailable } from "./utils/storage.js";
+import { getLocalStorageItem } from "./utils/storage.js";
 
-handleWeatherSearch("New York");
+/*handleWeatherSearch("New York");
 handleWeatherSearch("Somerset West");
 handleWeatherSearch("Stellenbosch");
 handleWeatherSearch("St Petersburg");
 handleWeatherSearch("Maldives");
+*/
 
-let weatherCardLocations = [];
+const storedLocations = getLocalStorageItem("weatherCardLocations");
+let weatherCardLocations = storedLocations ? JSON.parse(storedLocations) : [];
+
 const form = document.querySelector("#search-form");
 const locationInput = document.getElementById("locationInput");
 const outputElement = document.querySelector("#api");
@@ -142,9 +147,17 @@ function render() {
         weatherCardLocations = weatherCardLocations.filter(
           (loc) => loc.id !== cardID,
         );
+
         render();
       },
     );
     outputCard.appendChild(card);
   });
+
+  localStorage.setItem(
+    "weatherCardLocations",
+    JSON.stringify(weatherCardLocations),
+  );
 }
+
+render(storedLocations);

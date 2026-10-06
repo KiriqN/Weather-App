@@ -7,7 +7,7 @@ export function createWeatherCard(
   weatherCode,
   onRemove,
 ) {
-  const ID = cardID || `${name}-${country}`; // Use provided ID or generate one from name and country
+  const ID = cardID; // Use provided ID or generate one from name and country
 
   const card = document.createElement("article");
   card.className =
@@ -62,7 +62,7 @@ export function createWeatherCard(
   weatherDescription.className = "text-sm mt-2 text-gray-400";
   weatherDescription.textContent = weatherCode.label;
 
-  card.append(ID, topRow, iconElement, tempRow, weatherDescription);
+  card.append(topRow, iconElement, tempRow, weatherDescription);
 
   console.log(`Created card for ${name} with ID: ${ID}`);
 
