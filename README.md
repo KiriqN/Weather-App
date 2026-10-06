@@ -44,7 +44,7 @@ src/
 - [x] App state and rendering
 - [x] Search with autocomplete dropdown
 - [x] Removing cards
-- [ ] Saving with localStorage
+- [x] Saving with localStorage
 - [ ] Error handling and loading states
 - [x] Styling and polish
 
