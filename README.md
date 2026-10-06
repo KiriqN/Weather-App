@@ -2,7 +2,7 @@
 
 A weather app built with vanilla HTML, JavaScript, and Tailwind CSS. Search for any location, add it as a card, and see its current weather. Saved locations stay on the page after a refresh.
 
-🚧 **Status:** In progress
+**Status:** Completed MVP
 
 ## Why I'm building this
 
@@ -45,7 +45,7 @@ src/
 - [x] Search with autocomplete dropdown
 - [x] Removing cards
 - [x] Saving with localStorage
-- [ ] Error handling and loading states
+- [x] Error handling and loading states
 - [x] Styling and polish
 
 ## Getting started
