@@ -22,7 +22,10 @@ const locationInput = document.getElementById("locationInput");
 const outputElement = document.querySelector("#api");
 const outputCard = document.getElementById("card");
 const suggestionsList = document.getElementById("suggestions");
+const spinner = document.getElementById("spinner");
 let timerID;
+
+spinner.style.display = "none"; // Hide the spinner initially
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -82,6 +85,8 @@ async function handleSuggestions(location) {
 
 // Submit path: turns a typed name into a place, then shows its weather.
 async function handleWeatherSearch(name) {
+  spinner.style.display = "block"; // Show the spinner while loading
+
   try {
     const location = await getGeo(name);
 
@@ -93,14 +98,19 @@ async function handleWeatherSearch(name) {
     }
 
     await showWeatherForPlace(location.results[0]);
+
+    spinner.style.display = "none"; // Hide the spinner after loading
   } catch (error) {
     console.error("Error searching for location:", error);
     outputElement.textContent = `Failed to find that location. Please try again.`;
+    spinner.style.display = "none"; // Hide the spinner after loading
   }
 }
 
 // Shared by both paths: takes a place object and creates its weather card.
 async function showWeatherForPlace(place) {
+  spinner.style.display = "block"; // Show the spinner while loading
+
   try {
     const weather = await getData(place.latitude, place.longitude);
 
@@ -127,9 +137,12 @@ async function showWeatherForPlace(place) {
     weatherCardLocations.push(weatherLocation);
     console.log(weatherCardLocations);
     render();
+
+    spinner.style.display = "none"; // Hide the spinner after loading
   } catch (error) {
     console.error("Error fetching weather:", error);
     outputElement.textContent = `Failed to load weather data. Please try again.`;
+    spinner.style.display = "none"; // Hide the spinner after loading
   }
 }
 
