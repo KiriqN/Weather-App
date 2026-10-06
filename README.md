@@ -41,7 +41,7 @@ src/
 - [x] Weather API call
 - [x] Geocoding API call
 - [x] Weather card component
-- [ ] App state and rendering
+- [x] App state and rendering
 - [x] Search with autocomplete dropdown
 - [ ] Removing cards
 - [ ] Saving with localStorage
