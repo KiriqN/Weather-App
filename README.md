@@ -43,7 +43,7 @@ src/
 - [x] Weather card component
 - [x] App state and rendering
 - [x] Search with autocomplete dropdown
-- [ ] Removing cards
+- [x] Removing cards
 - [ ] Saving with localStorage
 - [ ] Error handling and loading states
 - [x] Styling and polish
