@@ -5,12 +5,13 @@ import { createWeatherCard } from "./components/card.js";
 import { getWeatherCodes } from "./utils/weathercodes.js";
 import { createSuggestionItem } from "./components/suggestions.js";
 
-handleWeatherSearch("New York");
+/*handleWeatherSearch("New York");
 handleWeatherSearch("Somerset West");
 handleWeatherSearch("Stellenbosch");
 handleWeatherSearch("St Petersburg");
-handleWeatherSearch("Maldives");
+handleWeatherSearch("Maldives"); */
 
+let weatherCardLocations = [];
 const form = document.querySelector("#search-form");
 const locationInput = document.getElementById("locationInput");
 const outputElement = document.querySelector("#api");
@@ -104,11 +105,37 @@ async function showWeatherForPlace(place) {
     const weatherInfo = getWeatherCodes(weatherCode, isDay);
 
     outputElement.textContent = "";
-    outputCard.appendChild(
-      createWeatherCard(place.country, place.name, temp, unit, weatherInfo),
-    );
+    /*outputCard.appendChild(
+      createWeatherCard(place.country, place.name, temp, unit, weatherInfo), 
+    ); */
+
+    const weatherLocation = {
+      id: place.id,
+      temperature: temp,
+      units: unit,
+      weatherCode: weatherInfo,
+      country: place.country,
+      name: place.name,
+    };
+    weatherCardLocations.push(weatherLocation);
+    console.log(weatherCardLocations);
+    render();
   } catch (error) {
     console.error("Error fetching weather:", error);
     outputElement.textContent = `Failed to load weather data. Please try again.`;
   }
+}
+
+function render() {
+  outputCard.innerHTML = "";
+  weatherCardLocations.forEach((location) => {
+    const card = createWeatherCard(
+      location.country,
+      location.name,
+      location.temperature,
+      location.units,
+      location.weatherCode,
+    );
+    outputCard.appendChild(card);
+  });
 }
