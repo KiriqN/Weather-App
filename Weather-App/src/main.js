@@ -5,11 +5,11 @@ import { createWeatherCard } from "./components/card.js";
 import { getWeatherCodes } from "./utils/weathercodes.js";
 import { createSuggestionItem } from "./components/suggestions.js";
 
-/*handleWeatherSearch("New York");
+handleWeatherSearch("New York");
 handleWeatherSearch("Somerset West");
 handleWeatherSearch("Stellenbosch");
 handleWeatherSearch("St Petersburg");
-handleWeatherSearch("Maldives"); */
+handleWeatherSearch("Maldives");
 
 let weatherCardLocations = [];
 const form = document.querySelector("#search-form");
