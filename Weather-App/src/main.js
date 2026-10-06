@@ -1,5 +1,3 @@
-`use strict`;
-
 import "./style.css";
 import { getData } from "./api/api.js";
 import { getGeo } from "./api/geocode.js";
@@ -7,11 +5,11 @@ import { createWeatherCard } from "./components/card.js";
 import { getWeatherCodes } from "./utils/weathercodes.js";
 import { createSuggestionItem } from "./components/suggestions.js";
 
-/*handleWeatherSearch("New York");
+handleWeatherSearch("New York");
 handleWeatherSearch("Somerset West");
 handleWeatherSearch("Stellenbosch");
 handleWeatherSearch("St Petersburg");
-handleWeatherSearch("Maldives"); */
+handleWeatherSearch("Maldives");
 
 const form = document.querySelector("#search-form");
 const locationInput = document.getElementById("locationInput");
@@ -43,13 +41,14 @@ locationInput.addEventListener("input", () => {
       handleSuggestions(locationInputListener);
     } else {
       suggestionsList.style.display = "none";
-      console.log("Suggestions Hidden");
     }
   }, 300);
 });
 
 async function handleSuggestions(location) {
-  if (location.length < 3) {
+  const minChar = 3;
+
+  if (location.length < minChar) {
     suggestionsList.style.display = "none";
     return;
   }
@@ -59,18 +58,23 @@ async function handleSuggestions(location) {
       suggestionsList.style.display = "none";
       return;
     }
-    suggestionsList.style.display = "block";
 
-    const suggestions = data.results
-      .slice(0, 3)
-      .map((place) => createSuggestionItem(place));
+    const suggestions = data.results.slice(0, 3).map((place) =>
+      createSuggestionItem(place, async (selectedPlace) => {
+        locationInput.value = "";
+        suggestionsList.style.display = "none";
+        await showWeatherForPlace(selectedPlace);
+      }),
+    );
     suggestionsList.replaceChildren(...suggestions);
+    suggestionsList.style.display = "block";
   } catch (error) {
     suggestionsList.style.display = "none";
     console.error("Error fetching suggestions:", error);
   }
 }
 
+// Submit path: turns a typed name into a place, then shows its weather.
 async function handleWeatherSearch(name) {
   try {
     const location = await getGeo(name);
@@ -80,12 +84,17 @@ async function handleWeatherSearch(name) {
       return;
     }
 
-    const latitude = location.results[0].latitude;
-    const longitude = location.results[0].longitude;
-    const locationName = location.results[0].name;
-    const countryName = location.results[0].country;
+    await showWeatherForPlace(location.results[0]);
+  } catch (error) {
+    console.error("Error searching for location:", error);
+    outputElement.textContent = `Failed to find that location. Please try again.`;
+  }
+}
 
-    const weather = await getData(latitude, longitude);
+// Shared by both paths: takes a place object and creates its weather card.
+async function showWeatherForPlace(place) {
+  try {
+    const weather = await getData(place.latitude, place.longitude);
 
     const temp = weather.current.temperature_2m;
     const unit = weather.current_units.temperature_2m;
@@ -94,11 +103,9 @@ async function handleWeatherSearch(name) {
 
     const weatherInfo = getWeatherCodes(weatherCode, isDay);
 
-    //console.log(weather);
-    //console.log(location);
-
+    outputElement.textContent = "";
     outputCard.appendChild(
-      createWeatherCard(countryName, locationName, temp, unit, weatherInfo),
+      createWeatherCard(place.country, place.name, temp, unit, weatherInfo),
     );
   } catch (error) {
     console.error("Error fetching weather:", error);
