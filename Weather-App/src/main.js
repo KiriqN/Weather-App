@@ -80,6 +80,8 @@ async function handleWeatherSearch(name) {
   try {
     const location = await getGeo(name);
 
+    console.log(location);
+
     if (!location.results) {
       outputElement.textContent = `No location found.`;
       return;
@@ -130,11 +132,18 @@ function render() {
   outputCard.innerHTML = "";
   weatherCardLocations.forEach((location) => {
     const card = createWeatherCard(
+      location.id,
       location.country,
       location.name,
       location.temperature,
       location.units,
       location.weatherCode,
+      (cardID) => {
+        weatherCardLocations = weatherCardLocations.filter(
+          (loc) => loc.id !== cardID,
+        );
+        render();
+      },
     );
     outputCard.appendChild(card);
   });

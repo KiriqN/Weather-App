@@ -1,10 +1,14 @@
 export function createWeatherCard(
+  cardID,
   country,
   name,
   temperature,
   units,
   weatherCode,
+  onRemove,
 ) {
+  const ID = cardID || `${name}-${country}`; // Use provided ID or generate one from name and country
+
   const card = document.createElement("article");
   card.className =
     "rounded-xl p-4 shadow-md min-h-[200px] bg-[#1a1a1a] border-[#333333] border-1";
@@ -58,7 +62,16 @@ export function createWeatherCard(
   weatherDescription.className = "text-sm mt-2 text-gray-400";
   weatherDescription.textContent = weatherCode.label;
 
-  card.append(topRow, iconElement, tempRow, weatherDescription);
+  card.append(ID, topRow, iconElement, tempRow, weatherDescription);
+
+  console.log(`Created card for ${name} with ID: ${ID}`);
+
+  closeIcon.addEventListener("click", () => {
+    console.log(`Removing card for ${cardID} ${name}`);
+    if (onRemove) {
+      onRemove(cardID);
+    }
+  });
 
   return card;
 }
